@@ -61,7 +61,7 @@ use PowerShell by admin and  execute: Set-ExecutionPolicy RemoteSigned (comfirm 
     }
     }
 
-    P.S. Матрицу вводить i1j1 i1j2; i2j1 i2j2 (Доступна только 2 на 2)
+P.S. Матрицу вводить i1j1 i1j2; i2j1 i2j2 (Доступна только 2 на 2)
 
 # 3:
     {

@@ -98,29 +98,44 @@ def isNum(string):
 #ADD
 
 def MatrixToList(matrix):
-    ListMatrix = []
-    
-    matrix = matrix.split('; ', 2)
+    try:
+        ListMatrix = []
+        
+        matrix = matrix.split('; ', 2)
 
-    for i in range(0, 2):
-        matrix[i] = matrix[i].split(' ')
+        for i in range(0, 2):
+            matrix[i] = matrix[i].split(' ')
 
-    ListMatrix += matrix
+        ListMatrix += matrix
 
-    for i in range(0, 2):
-        for j in range(0, 2):
-            ListMatrix[i][j] = int(ListMatrix[i][j]) #Elm's Mat From Str To Int
+        for i in range(0, 2):
+            for j in range(0, 2):
+                ListMatrix[i][j] = int(ListMatrix[i][j]) #Elm's Mat From Str To Int
 
-    return ListMatrix
+        return ListMatrix
+    except:
+        return None
 
 def ConvertFrom6to10(string): #Первая задача
+    if len(string) == 0:
+        return 'Вы не ввели число!'
+    
     result = int(string, 6)
 
     return result
 
 def multiplyMatrixAlgStrasen(M1, M2): #Вторая задача
+    Matrix1 = []
+    Matrix2 = []
+
     Matrix1 = MatrixToList(M1)
     Matrix2 = MatrixToList(M2)
+
+    if Matrix1 == None or Matrix2 == None:
+        return 'Допущена ошибка при вводе матрицы!'
+
+    if len(Matrix1) != 2 or len(Matrix2) != 2:
+        return 'Ошибка. Допустимы матрицы 2 на 2'
 
     D1 = (Matrix1[0][0] + Matrix1[1][1]) * (Matrix2[0][0] + Matrix2[1][1])
     D2 = (Matrix1[1][0] + Matrix1[1][1]) * Matrix2[0][0]
@@ -137,6 +152,12 @@ def multiplyMatrixAlgStrasen(M1, M2): #Вторая задача
 def SkolkoRazBukvVTexte(string, letter): #Третья задача
     string = list(string)
 
+    if len(string) == 0:
+        return 'Вы не ввели текст в котором будет осуществляться поиск'
+
+    if len(letter) != 1:
+        return 'Вы ввели больше одной или меньше одной буквы для поиска!'
+
     count = 0
 
     for i in range(0, len(string)):
@@ -146,8 +167,11 @@ def SkolkoRazBukvVTexte(string, letter): #Третья задача
     return count
 
 def DeleteGlasBukv(string): #Четрвёртвя задача
+    if len(string) == 0:
+        return 'Вы не ввели текст в котором будет осуществляться удаление!'
+
     res = string
-    bukv = 'ауоыиэяюеёАУОЫИЭЯЮЕЁ'
+    bukv = 'ауоыиэяюеёАУОЫИЭЯЮЕЁaoeiuyAOEIUY'
     
     for i in bukv:
         res = res.replace(i, '')

@@ -38,14 +38,13 @@ def funcController(inJson):
         case "sum":
             return funcNice.getSum(value)   
         # Nice functions section ADD ==========================================
-        case "ConvertFrom6to10":
+        case "Task1": #Из 6 в 10
             return funcNice.ConvertFrom6to10(value)
-        case "multiplyMatrixAlgByStrasen":
+        case "Task2": #Умножение матриц по алгоритму Штрассена 
             return funcNice.multiplyMatrixAlgStrasen(data['matrix1'], data['matrix2'])
-        case "HowMuchBuckvVTexte":
-            print('ser')
+        case "Task3": #Сколько включений данной буквы в тексте
             return funcNice.SkolkoRazBukvVTexte(value, data['letter'])
-        case "DeleteGlasBukv":
+        case "Task4": #Удаление гласных букв (анлийский и русский)
             return funcNice.DeleteGlasBukv(value)
 
         # Usual functions section =========================================
@@ -61,40 +60,18 @@ def funcController(inJson):
 def start():
     return render_template('index.html')
 
-""" BAD
-@app.route("/task1", methods=['GET', 'POST'])
-def task1():
-    try:
-        if request.method == 'POST':
-            NumberFromInputFrom6To10 = request.form['NumberFromTask1']
-            res = funcController(request.get_json())
-            res =  {'data': {'result': res}}
-            work = WorkModel(params=request.get_json(),result = res)
-            db.session.add(work)
-            db.session.commit()
-            return render_template('task1.html', AnswerFromServer = {"data": work.serialize, }), 200
-        else:
-            return render_template('task1.html')
-    except:
-        render_template('task1.html', AnswerFromServer = {"data": 'wrong json-params', }), 400
-
-
-@app.route("/task2", methods=['GET', 'POST'])
-def task2():
-    return render_template('task2.html')
-
-@app.route("/task3", methods=['GET', 'POST'])
-def task3():
-    return render_template('task3.html')
-
-@app.route("/task4", methods=['GET', 'POST'])
-def task4():
-    return render_template('task4.html')
-"""
-
 @app.route("/list",methods=['GET'])
 def getWorks():
-    works = WorkModel.query.order_by(WorkModel.id.desc()).limit(25)
+    limit = request.args.get('limit')
+
+    if not (limit == None) and limit.isdigit():
+        limit = int(limit)
+        works = WorkModel.query.order_by(WorkModel.id.desc()).limit(limit)
+        return jsonify(works=[i.serialize for i in works])
+    
+    if not limit.isdigit():
+        return {"data": f"Введите ID работы которую хотите посмотреть!"}
+    works = WorkModel.query.order_by(WorkModel.id.desc())
     return jsonify(works=[i.serialize for i in works])
 
 @app.route("/calc",methods=['POST'])
@@ -109,20 +86,37 @@ def index():
     except:
         return {"data": 'wrong json-params', }, 400
     
-@app.route('/work/<id>', methods=['GET'])
-def viewTask(id):
-    return WorkModel.query.get(id).serialize
+@app.route('/work', methods=['GET'])
+def viewTask():
+    WorkId = request.args.get('WorkId')
+    if not WorkId == None:
+        if not WorkId.isdigit():
+            return {"data": f"Введите ID работы которую хотите посмотреть!"}
+        WorkId = int(WorkId)
 
-@app.route('/work/<id>', methods=['DELETE'])
-def deleteTask(id):
-    s = "not found"
-    code = 404
-    if(WorkModel.query.get(id)):
-        db.session.delete(WorkModel.query.get(id))
-        db.session.commit()
-        code = 200 
-        s = "successfully deleted"       
-    return {"data": f"id={id} {s}"}, code
+        try:
+            return WorkModel.query.get(WorkId).serialize
+        except AttributeError:
+            return {"data": f"Работы под ID: {WorkId} не существует!"}
+    return {"data": "Введите обязательный параметр: WorkId"}
+
+@app.route('/work', methods=['DELETE'])
+def deleteTask():
+    WorkId = request.args.get('WorkId')
+    if not WorkId == None:
+        try:
+            WorkId = int(WorkId)
+        except ValueError:
+            return {"data": "Введите число!"}, 404
+        s = "not found"
+        code = 404
+        if(WorkModel.query.get(WorkId)):
+            db.session.delete(WorkModel.query.get(WorkId))
+            db.session.commit()
+            code = 200 
+            s = "successfully deleted"       
+        return {"data": f"id={WorkId} {s}"}, code
+    return {"data": "Введите обязательный параметр: WorkId"}
     
 if __name__ == "__main__":
     with app.app_context():

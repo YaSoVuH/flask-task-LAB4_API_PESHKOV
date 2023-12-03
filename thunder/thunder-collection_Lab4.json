@@ -1,0 +1,147 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Lab4",
+    "dateExported": "2023-12-03T14:41:59.337Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "ef9ef749-2419-4ac9-9244-10381fd86992",
+            "colId": "08da60e9-a0dc-4b91-9590-38436a1f1d27",
+            "containerId": "",
+            "name": "Task1",
+            "url": "http://127.0.0.1:2001/calc",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-12-03T13:39:28.461Z",
+            "modified": "2023-12-03T14:01:16.764Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n\"_comment\": \"Задание 1. Из 6 в 10 сисстему\",\r\n\"method\": \"Task1\",\r\n\"data\": {\r\n\"value\": \"\"\r\n}\r\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "b7cf30e6-4009-4e0b-b7d8-e5d2a4b8b504",
+            "colId": "08da60e9-a0dc-4b91-9590-38436a1f1d27",
+            "containerId": "",
+            "name": "Task2",
+            "url": "http://127.0.0.1:2001/calc",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-12-03T13:41:18.052Z",
+            "modified": "2023-12-03T14:06:48.781Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n\"_comment\": \"Умножение матриц по алгоритму Штрассена. Матрицы только 2 на 2. Формат ввода: i1j1 i2j1; i1j2 i2j2\",\r\n\"method\": \"Task2\",\r\n\"data\": {\r\n\"value\": 0,\r\n\"matrix1\": \"\",\r\n\"matrix2\": \"\"\r\n}\r\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "5914b73d-c389-46e3-b37b-51a0d38d266d",
+            "colId": "08da60e9-a0dc-4b91-9590-38436a1f1d27",
+            "containerId": "",
+            "name": "Task3",
+            "url": "http://127.0.0.1:2001/calc",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-12-03T13:41:35.836Z",
+            "modified": "2023-12-03T14:07:24.790Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n\"_comment\": \"Задание 3. Сколько включений данной буквы в тексте\",\r\n\"method\": \"Task3\",\r\n\"data\": {\r\n\"value\": \"\",\r\n\"letter\": \"\"\r\n}\r\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "511d0215-579e-4102-8d7a-2aff04f0ef67",
+            "colId": "08da60e9-a0dc-4b91-9590-38436a1f1d27",
+            "containerId": "",
+            "name": "Task4",
+            "url": "http://127.0.0.1:2001/calc",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-12-03T13:41:49.028Z",
+            "modified": "2023-12-03T14:07:51.641Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n\"method\": \"Task4\",\r\n\"data\": {\r\n\"value\": \"\"\r\n}\r\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "bcbf1854-d1b8-42b6-aa85-7f1471cef77f",
+            "colId": "08da60e9-a0dc-4b91-9590-38436a1f1d27",
+            "containerId": "",
+            "name": "list",
+            "url": "http://127.0.0.1:2001/list",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-12-03T14:08:06.987Z",
+            "modified": "2023-12-03T14:39:13.516Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "limit",
+                    "value": "",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "16535ea1-5e3d-4af9-bb65-3d568cb7b00c",
+            "colId": "08da60e9-a0dc-4b91-9590-38436a1f1d27",
+            "containerId": "",
+            "name": "WorkID",
+            "url": "http://127.0.0.1:2001/work",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-12-03T14:08:34.659Z",
+            "modified": "2023-12-03T14:39:19.965Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "WorkId",
+                    "value": "",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "686d39c5-71de-4371-beb2-6e1854d9b915",
+            "colId": "08da60e9-a0dc-4b91-9590-38436a1f1d27",
+            "containerId": "",
+            "name": "DeleteWorkByID",
+            "url": "http://127.0.0.1:2001/work?WorkId=44",
+            "method": "DELETE",
+            "sortNum": 70000,
+            "created": "2023-12-03T14:14:04.286Z",
+            "modified": "2023-12-03T14:40:27.533Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "WorkId",
+                    "value": "44",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        }
+    ]
+}
